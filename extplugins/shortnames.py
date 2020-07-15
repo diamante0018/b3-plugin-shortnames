@@ -33,7 +33,7 @@ class ShortnamesPlugin(b3.plugin.Plugin):
             else:
                 self.debug('Client has more than 3 characters on his in game name')
                 return False 
-            if all(c in string.printable for c in name):
+            if not (all(c in string.printable for c in name)):
                 self.debug("(%s) has non printable characters in his name" %(name))
                 event.client.ban("Are you bot?", keyword="short_name")
                 return True
