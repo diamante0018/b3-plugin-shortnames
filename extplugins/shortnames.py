@@ -6,6 +6,7 @@ import b3.events
 import b3.plugin
 from b3 import functions
 import re
+import string
 
 class ShortnamesPlugin(b3.plugin.Plugin):
     _adminPlugin = False
@@ -30,5 +31,12 @@ class ShortnamesPlugin(b3.plugin.Plugin):
                 event.client.ban("Are you bot?", keyword="short_name")
                 return True
             else:
-                self.debug('Client has more than 3 characters on his in game name)
-                return False
+                self.debug('Client has more than 3 characters on his in game name')
+                return False 
+            if all(c in string.printable for c in name):
+                self.debug("(%s) has non printable characters in his name" %(name))
+                event.client.ban("Are you bot?", keyword="short_name")
+                return True
+            else:
+                self.debug('Client name is printable')
+                return False 
