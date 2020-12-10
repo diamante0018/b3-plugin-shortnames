@@ -24,7 +24,7 @@ class ShortnamesPlugin(b3.plugin.Plugin):
 
     def onEvent(self, event):
         """
-        First we use regex to remove to remove whitespaces, if the length is less than 3 we ban.
+        First we use regular expressions to remove to remove whitespaces, if the length is less than 3 we kick.
         Lastly we check for non printable characters, if we find them we ban the player.
         """
         if event.type == b3.events.EVT_CLIENT_AUTH:
