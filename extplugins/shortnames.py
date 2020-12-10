@@ -4,7 +4,6 @@ __author__ = 'Zwambro'
 import b3
 import b3.events
 import b3.plugin
-from b3 import functions
 import string
 import re
 
@@ -35,7 +34,7 @@ class ShortnamesPlugin(b3.plugin.Plugin):
             
             if len(name) < 3:
                 self.debug("(%s) has short name" %(name))
-                event.client.ban("Are you bot?", keyword="short_name")
+                event.client.kick("Are you bot?", keyword="short_name")
                 return True
             else:
                 self.debug('Client has more than 3 characters in his IGN')
