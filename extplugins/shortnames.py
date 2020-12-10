@@ -5,8 +5,8 @@ import b3
 import b3.events
 import b3.plugin
 from b3 import functions
-import re
 import string
+import re
 
 class ShortnamesPlugin(b3.plugin.Plugin):
     _adminPlugin = False
@@ -25,7 +25,10 @@ class ShortnamesPlugin(b3.plugin.Plugin):
 
     def onEvent(self, event):
         if event.type == b3.events.EVT_CLIENT_AUTH:
-            name = str(event.client.name.replace(" ", ""))
+            name = str(event.client.name)
+            r = re.compile(r'\s+', re.UNICODE)
+            name = re.sub(r, '', name)
+            
             if len(name) < 3:
                 self.debug("(%s) has short name" %(name))
                 event.client.ban("Are you bot?", keyword="short_name")
